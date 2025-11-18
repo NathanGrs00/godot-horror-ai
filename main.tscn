@@ -1,12 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://done62ik5vswl"]
+[gd_scene load_steps=7 format=3 uid="uid://done62ik5vswl"]
 
 [ext_resource type="PackedScene" uid="uid://6c2ac38d2r6x" path="res://player.tscn" id="1_mswn6"]
+[ext_resource type="PackedScene" uid="uid://5oyvt4oyurbk" path="res://Zombie.glb" id="2_0xm2m"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5ixi4"]
 size = Vector3(60, 2, 60)
 
 [sub_resource type="BoxMesh" id="BoxMesh_jjs02"]
 size = Vector3(60, 2, 60)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ig7tw"]
+size = Vector3(56, 4, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_0xm2m"]
+size = Vector3(56, 4, 2)
 
 [node name="Main" type="Node"]
 
@@ -25,3 +32,44 @@ shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("1_mswn6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="Outer Walls" type="Node" parent="."]
+
+[node name="OuterWallNorth" type="StaticBody3D" parent="Outer Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 29)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Outer Walls/OuterWallNorth"]
+shape = SubResource("BoxShape3D_ig7tw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Outer Walls/OuterWallNorth"]
+mesh = SubResource("BoxMesh_0xm2m")
+
+[node name="OuterWallSouth" type="StaticBody3D" parent="Outer Walls"]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 2, -29)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Outer Walls/OuterWallSouth"]
+shape = SubResource("BoxShape3D_ig7tw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Outer Walls/OuterWallSouth"]
+mesh = SubResource("BoxMesh_0xm2m")
+
+[node name="OuterWallEast" type="StaticBody3D" parent="Outer Walls"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -29, 2, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Outer Walls/OuterWallEast"]
+shape = SubResource("BoxShape3D_ig7tw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Outer Walls/OuterWallEast"]
+mesh = SubResource("BoxMesh_0xm2m")
+
+[node name="OuterWallWest" type="StaticBody3D" parent="Outer Walls"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 29, 2, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Outer Walls/OuterWallWest"]
+shape = SubResource("BoxShape3D_ig7tw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Outer Walls/OuterWallWest"]
+mesh = SubResource("BoxMesh_0xm2m")
+
+[node name="Zombie" parent="." instance=ExtResource("2_0xm2m")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 2, 0, 0)
