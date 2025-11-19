@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://5oyvt4oyurbk"
-path="res://.godot/imported/Zombie.glb-bef705b7d8138630787ad904b88c5443.scn"
+path="res://.godot/imported/Zombie.glb-c98c0ae0717106b9ae4e12b64a09946d.scn"
 
 [deps]
 
-source_file="res://Zombie.glb"
-dest_files=["res://.godot/imported/Zombie.glb-bef705b7d8138630787ad904b88c5443.scn"]
+source_file="res://Monster/Zombie.glb"
+dest_files=["res://.godot/imported/Zombie.glb-c98c0ae0717106b9ae4e12b64a09946d.scn"]
 
 [params]
 
