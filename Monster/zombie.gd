@@ -16,7 +16,7 @@ func _physics_process(delta):
 	var new_velocity = (next_location - current_location).normalized() * SPEED
 	
 	# Set the velocity.
-	velocity = new_velocity
+	velocity = velocity.move_toward(new_velocity, .25)
 	# Move.
 	move_and_slide()
 	
