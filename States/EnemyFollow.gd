@@ -32,7 +32,7 @@ func Physics_Update(delta: float):
 	var direction = (next_pos - enemy.global_position)
 	
 	# Check if zombie is outside of range
-	if enemy.global_position.distance_to(player.global_position) > 20: 
+	if enemy.global_position.distance_to(player.global_position) > 30: 
 		Transitioned.emit(self, "idle")
 	
 	# If that length is less than 1, meaning the zombie is next to the player

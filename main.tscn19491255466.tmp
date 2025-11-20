@@ -489,41 +489,12 @@ script = ExtResource("4_lquwl")
 
 [node name="CollectCounter" type="Label" parent="UICanvas/UI"]
 layout_mode = 0
-offset_left = 1229.0
-offset_top = 7.0
-offset_right = 1271.0
-offset_bottom = 30.0
+offset_left = 1099.0
+offset_top = 8.0
+offset_right = 1141.0
+offset_bottom = 31.0
 text = "0 / 50"
 horizontal_alignment = 2
 
-[node name="CollectionSpheres" type="Node" parent="."]
-
-[node name="CollectibleSphere" parent="CollectionSpheres" instance=ExtResource("4_1bvp3")]
+[node name="CollectibleSphere" parent="." instance=ExtResource("4_1bvp3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 1, -18)
-
-[node name="CollectibleSphere9" parent="CollectionSpheres" instance=ExtResource("4_1bvp3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 1, -5)
-
-[node name="CollectibleSphere3" parent="CollectionSpheres" instance=ExtResource("4_1bvp3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 1, 11)
-
-[node name="CollectibleSphere4" parent="CollectionSpheres" instance=ExtResource("4_1bvp3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1, -8)
-
-[node name="CollectibleSphere5" parent="CollectionSpheres" instance=ExtResource("4_1bvp3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 1, -9)
-
-[node name="CollectibleSphere6" parent="CollectionSpheres" instance=ExtResource("4_1bvp3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 1, 25)
-
-[node name="CollectibleSphere10" parent="CollectionSpheres" instance=ExtResource("4_1bvp3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 1, 1)
-
-[node name="CollectibleSphere7" parent="CollectionSpheres" instance=ExtResource("4_1bvp3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, 13)
-
-[node name="CollectibleSphere8" parent="CollectionSpheres" instance=ExtResource("4_1bvp3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 1, 10)
-
-[node name="CollectibleSphere2" parent="CollectionSpheres" instance=ExtResource("4_1bvp3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 1, -21)

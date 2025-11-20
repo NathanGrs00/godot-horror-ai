@@ -42,10 +42,14 @@ func Physics_Update(delta: float):
 	
 	var direction = player.global_position - enemy.global_position
 	
-	if direction.length() < 20:
+	if direction.length() < 30:
 		Transitioned.emit(self, "follow")
 		
 	enemy.get_node("AnimationPlayer").play("Armature|Walk")
 	
+	if move_direction.length() > 0.1:
+		var look_pos = enemy.global_position - move_direction
+		enemy.look_at(look_pos, Vector3.UP)
+
 	enemy.move_and_slide()
 	

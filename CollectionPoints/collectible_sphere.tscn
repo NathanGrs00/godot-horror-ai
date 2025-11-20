@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://cn8x63pnoyen8"]
+
+[ext_resource type="Script" uid="uid://cfk87qoan1toy" path="res://CollectionPoints/collectionbulb.gd" id="1_0k2bq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5du5n"]
+albedo_color = Color(0.11372549, 0.73333335, 0.015686275, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_uiek3"]
+material = SubResource("StandardMaterial3D_5du5n")
+radius = 0.2
+height = 0.4
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_cq4q4"]
+radius = 0.2
+
+[node name="CollectibleSphere" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_uiek3")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_cq4q4")
+script = ExtResource("1_0k2bq")
+
+[connection signal="body_entered" from="Area3D" to="Area3D/CollisionShape3D" method="_on_area_3d_body_entered"]
