@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cv5par83xv0xo" path="res://Monster/zombie.tscn" id="2_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://cn8x63pnoyen8" path="res://CollectionPoints/collectible_sphere.tscn" id="4_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://by8q1vmtexvr" path="res://Assets/Tables/table.tscn" id="4_7mycd"]
-[ext_resource type="Script" uid="uid://1a8wys32p0mc" path="res://ui.gd" id="4_lquwl"]
+[ext_resource type="Script" uid="uid://1a8wys32p0mc" path="res://UI/ui.gd" id="4_lquwl"]
 [ext_resource type="PackedScene" uid="uid://c2gt5nwvx3cq2" path="res://Assets/Chairs/basic_chair.glb" id="5_272bh"]
 [ext_resource type="PackedScene" uid="uid://nkcgqqp0aow5" path="res://Assets/Chairs/office_chair_1_low_poly.glb" id="8_5vw27"]
 
