@@ -3,11 +3,13 @@ class_name EnemyFollow
 
 # Get the zombie and speed
 @export var enemy: CharacterBody3D
-@export var move_speed := 3.0
+@export var move_speed := 4.0
 
 # variables
 var player: CharacterBody3D
 var nav_agent: NavigationAgent3D
+
+var chase_started := false
 
 # When first changed into state
 func Enter():
@@ -16,6 +18,10 @@ func Enter():
 	nav_agent = enemy.get_node("NavigationAgent3D")
 	# Change the target_position to the player's global position
 	nav_agent.target_position = player.global_position
+	
+	if not chase_started:
+		MusicManager.play_chase()
+		chase_started = true
 	
 func Physics_Update(delta: float):
 	# If player is somehow null, return
@@ -53,3 +59,7 @@ func Physics_Update(delta: float):
 	
 	# move it!
 	enemy.move_and_slide()
+	
+func Exit():
+	MusicManager.play_normal()
+	chase_started = false

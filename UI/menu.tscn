@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://ln7jntr6pwda"]
+[gd_scene load_steps=3 format=3 uid="uid://ln7jntr6pwda"]
 
 [ext_resource type="Script" uid="uid://8xdb2ccp7b3s" path="res://UI/menu.gd" id="1_0h2wq"]
+[ext_resource type="AudioStream" uid="uid://brg12y71plv1p" path="res://Sound/horror-background-atmosphere-156462.mp3" id="2_wfiwe"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -29,6 +30,11 @@ text = "START"
 [node name="QuitButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "QUIT"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_wfiwe")
+volume_db = -0.19
+autoplay = true
 
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

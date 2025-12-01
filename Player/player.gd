@@ -1,10 +1,17 @@
 extends CharacterBody3D
 
 # How fast the player moves in meters per second.
-@export var walk_speed = 3.0
-@export var sprint_speed = 4.0
+@export var walk_speed = 2.5
+@export var sprint_speed = 5.0
 # How fast the camera moves.
 @export var mouse_sensitivity = 0.1
+
+# Maximum sprint duration in seconds.
+@export var max_stamina = 2.0
+# How fast stamina regenerates
+@export var stamina_regen_rate = 1.0
+
+var current_stamina: float = max_stamina
 
 # Rotation to change the character rotation.
 var rotation_x := 0.0
@@ -53,37 +60,47 @@ func _physics_process(delta):
 	if Input.is_action_pressed("move_right"):
 		# Move the character by 1 on the x axis. 
 		direction += transform.basis.x
-	
-	var current_speed = walk_speed
-	if Input.is_action_pressed("run"):
-		current_speed = sprint_speed
 		
 	if Input.is_action_pressed("quit"):
 		get_tree().quit()
 
-	# Check if player is moving: 
-	if direction != Vector3.ZERO: 
+	var is_moving = direction != Vector3.ZERO
+	var is_running_input = Input.is_action_pressed("run")
+	# Check if the player can sprint.
+	var can_sprint = current_stamina > 0 and is_moving and is_running_input
+	
+	var current_speed = walk_speed
+	
+	if can_sprint:
+		# Depletes stamina over time.
+		current_stamina -= delta
+		current_stamina = max(current_stamina, 0)
+		current_speed = sprint_speed
+		# Change to the running animation.
+		if anim_player.current_animation != "CharacterArmature|Run":
+			anim_player.play("CharacterArmature|Run")
+	else:
+		current_speed = walk_speed
+		# Regen stamina
+		if not is_running_input or not is_moving:
+			current_stamina += stamina_regen_rate * delta
+			current_stamina = min(current_stamina, max_stamina)
+		
+		# Check if player is moving
+		if is_moving: 
+			# Play walking animation
+			if anim_player.current_animation != "CharacterArmature|Walk":
+				anim_player.play("CharacterArmature|Walk")
+		else:
+			if anim_player.current_animation != "CharacterArmature|Idle":
+				anim_player.play("CharacterArmature|Idle")
+	
 		# If the player holds W and D at the same time, instead of moving at 
 		# a speed of 1, it moves at a speed of 1.4, this is why we need to 
 		# normalize the movement.
-		direction = direction.normalized()
-		
-		# Check if the player is sprinting:
-		if Input.is_action_pressed("run"):
-			current_speed = sprint_speed
-			# Change to the running animation.
-			if anim_player.current_animation != "CharacterArmature|Run":
-				anim_player.play("CharacterArmature|Run")
-		else:
-			current_speed = walk_speed
-			# If not sprinting, he is walking.
-			if anim_player.current_animation != "CharacterArmature|Walk":
-				anim_player.play("CharacterArmature|Walk")
-	else:
-		# If not moving, he is idle.
-		if anim_player.current_animation != "CharacterArmature|Idle":
-			anim_player.play("CharacterArmature|Idle")
-
+		if direction != Vector3.ZERO: 
+			direction = direction.normalized()
+			
 	# Apply movement
 	velocity.x = direction.x * current_speed
 	velocity.z = direction.z * current_speed

@@ -14,6 +14,10 @@ config/name="Path to the Hunter"
 run/main_scene="uid://ln7jntr6pwda"
 config/features=PackedStringArray("4.5", "Forward Plus")
 
+[autoload]
+
+MusicManager="*res://Sound/MusicManager.tscn"
+
 [display]
 
 window/size/viewport_width=1280
