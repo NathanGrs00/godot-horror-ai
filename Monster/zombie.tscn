@@ -3997,7 +3997,7 @@ transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0, 0, 0)
 script = ExtResource("1_iftvf")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1.7092276, 1.1104015)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0.13437417, 1.7092278, 0.44399324)
 shape = SubResource("SphereShape3D_sjuah")
 
 [node name="RootNode" type="Node3D" parent="."]

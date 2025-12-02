@@ -10,3 +10,7 @@ func play_normal():
 func play_chase():
 	normal_music.stop()
 	chase_music.play()
+
+func stop_all():
+	normal_music.stop()
+	chase_music.stop()

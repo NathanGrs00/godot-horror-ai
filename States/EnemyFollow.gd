@@ -41,10 +41,12 @@ func Physics_Update(delta: float):
 	if enemy.global_position.distance_to(player.global_position) > 30: 
 		Transitioned.emit(self, "idle")
 	
+	var distance_to_player = enemy.global_position.distance_to(player.global_position)
 	# If that length is less than 1, meaning the zombie is next to the player
-	if direction.length() < 1.0:
+	if distance_to_player < 1.4:
 		# Set the velocity to 0.
 		enemy.velocity = Vector3.ZERO
+		enemy._on_state_gameover()
 		return
 	
 	# other wise, set the velocity to the distance * speed.

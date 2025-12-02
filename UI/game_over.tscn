@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://c6yt8nx1jrub8"]
+
+[ext_resource type="Script" uid="uid://dyfd8xyr6f2be" path="res://UI/retry.gd" id="1_3y5qq"]
+[ext_resource type="FontFile" uid="uid://c1x15a3ammekv" path="res://Fonts/who asks satan.ttf" id="1_jawqf"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3y5qq"]
+font = ExtResource("1_jawqf")
+font_size = 200
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3y5qq")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 300.0
+offset_top = 42.0
+offset_right = 970.0
+offset_bottom = 224.0
+text = "GAME OVER"
+label_settings = SubResource("LabelSettings_3y5qq")
+
+[node name="Retry" type="Button" parent="."]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 0
+offset_left = 546.0
+offset_top = 423.0
+offset_right = 746.0
+offset_bottom = 523.0
+text = "Retry?"

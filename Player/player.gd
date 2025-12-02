@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+@onready var stamina_bar = $"/root/Main/UICanvas/MarginContainer/StaminaBar"
+
 # How fast the player moves in meters per second.
 @export var walk_speed = 2.5
 @export var sprint_speed = 5.0
@@ -94,16 +96,19 @@ func _physics_process(delta):
 		else:
 			if anim_player.current_animation != "CharacterArmature|Idle":
 				anim_player.play("CharacterArmature|Idle")
-	
+		
 		# If the player holds W and D at the same time, instead of moving at 
 		# a speed of 1, it moves at a speed of 1.4, this is why we need to 
 		# normalize the movement.
-		if direction != Vector3.ZERO: 
+		if is_moving: 
 			direction = direction.normalized()
 			
 	# Apply movement
 	velocity.x = direction.x * current_speed
 	velocity.z = direction.z * current_speed
-
+	
+	# Update the stamina bar every frame.
+	stamina_bar.update_stamina(current_stamina)
+	
 	# Move the character
 	move_and_slide()

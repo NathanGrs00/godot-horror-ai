@@ -8,3 +8,11 @@ func _physics_process(delta):
 	
 func _ready():
 	MusicManager.play_normal()
+	
+	for enemy in get_tree().get_nodes_in_group("enemies"):
+		enemy.connect("game_over", Callable(self, "_on_game_over"))
+
+func _on_game_over():
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	MusicManager.stop_all()
+	get_tree().change_scene_to_file("res://UI/game_over.tscn")
