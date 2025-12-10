@@ -9,6 +9,8 @@ func _ready():
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
+		if "current_stamina" in body:
+			body.current_stamina = body.max_stamina
 		get_node("/root/Main/UICanvas/UI").add_collectible()
 		# Remove the parent Node3D (the whole collectible)
 		get_parent().get_parent().queue_free()
