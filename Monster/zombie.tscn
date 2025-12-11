@@ -4447,3 +4447,6 @@ metadata/_custom_type_script = "uid://dasc26hpncr3e"
 script = ExtResource("5_s67n6")
 enemy = NodePath("../..")
 metadata/_custom_type_script = "uid://c1ytnj8lad1oh"
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+volume_db = 37.69

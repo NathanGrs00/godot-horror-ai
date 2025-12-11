@@ -1,5 +1,6 @@
 extends CharacterBody3D
 
+# Get the stamina bar from the canvas.
 @onready var stamina_bar = $"/root/Main/UICanvas/MarginContainer/StaminaBar"
 
 # How fast the player moves in meters per second.
@@ -9,21 +10,25 @@ extends CharacterBody3D
 @export var mouse_sensitivity = 0.1
 
 # Maximum sprint duration in seconds.
-@export var max_stamina = 2.0
+@export var max_stamina = 4.0
 # How fast stamina regenerates
 @export var stamina_regen_rate = 1.0
 
+# Set the current stamina to max as default
 var current_stamina: float = max_stamina
 
 # Rotation to change the character rotation.
 var rotation_x := 0.0
 var rotation_y := 0.0
 
+# Get the animationplayer
 var anim_player : AnimationPlayer
 
+# First loads in
 func _ready():
 	# Hide the OS cursor and capture it for mouse movement
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	#Initialize the anim_player
 	anim_player = get_node("Pivot/Character/AnimationPlayer")
 
 # Makes it so the camera does not rotate when interacting.
@@ -35,7 +40,8 @@ func _unhandled_input(event):
 		# Keeps the vertical camera within a limit.
 		rotation_x = clamp(rotation_x - event.relative.y * mouse_sensitivity, -30, 30)
 
-# physics_process instead of normal process, # since this is made for character movement.
+# physics_process instead of normal process, 
+# since this is made for character movement.
 func _physics_process(delta):
 	# Rotate player horizontally
 	rotation.y = deg_to_rad(rotation_y)
@@ -62,26 +68,33 @@ func _physics_process(delta):
 	if Input.is_action_pressed("move_right"):
 		# Move the character by 1 on the x axis. 
 		direction += transform.basis.x
-		
+	
+	# Quit when q or esc is pressed
 	if Input.is_action_pressed("quit"):
 		get_tree().quit()
 
+	# Variable to keep track if the player is moving.
 	var is_moving = direction != Vector3.ZERO
+	# Same for running
 	var is_running_input = Input.is_action_pressed("run")
-	# Check if the player can sprint.
+	# Check if the player can sprint and is sprinting.
 	var can_sprint = current_stamina > 0 and is_moving and is_running_input
 	
+	# Set the speed to walkspeed first.
 	var current_speed = walk_speed
 	
+	# If the user is sprinting.
 	if can_sprint:
 		# Depletes stamina over time.
 		current_stamina -= delta
 		current_stamina = max(current_stamina, 0)
+		# Set the speed to sprint_speed
 		current_speed = sprint_speed
 		# Change to the running animation.
 		if anim_player.current_animation != "CharacterArmature|Run":
 			anim_player.play("CharacterArmature|Run")
 	else:
+		# Set it to walk speed.
 		current_speed = walk_speed
 		# Regen stamina
 		if not is_running_input or not is_moving:
@@ -94,6 +107,7 @@ func _physics_process(delta):
 			if anim_player.current_animation != "CharacterArmature|Walk":
 				anim_player.play("CharacterArmature|Walk")
 		else:
+			# Play the idle animation.
 			if anim_player.current_animation != "CharacterArmature|Idle":
 				anim_player.play("CharacterArmature|Idle")
 		

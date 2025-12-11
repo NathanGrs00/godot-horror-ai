@@ -8,6 +8,7 @@ var current_state : State
 # Make an empty dictionary for the states
 var states: Dictionary = {}
 
+# Load in first.
 func _ready():
 	# loop through all the children of the StateMachine.
 	for child in get_children():
