@@ -17,6 +17,11 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 			# Give the player full stamina for touching the sphere.
 			body.current_stamina = body.max_stamina
 		# Add to score +1
-		get_node("/root/Main/UICanvas/UI").add_collectible()
+		var ui = get_node("/root/Main/UICanvas/UI")
+		ui.elapsed_time = get_node("/root/Main").elapsed_time
+		ui.add_collectible()
+		# Play sound
+		var sfx = get_node("/root/Main/SFX")
+		sfx.play()
 		# Remove the parent Node3D (the whole collectible)
 		get_parent().get_parent().queue_free()

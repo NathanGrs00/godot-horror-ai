@@ -3,6 +3,8 @@ extends Control
 var collected := 0
 # Total spheres in the map
 const TOTAL := 10 
+@export var winner_scene: PackedScene
+var elapsed_time := 0.0
 
 # Update the counter when loaded in.
 func _ready():
@@ -21,5 +23,9 @@ func update_counter():
 # Win condition
 func check_win():
 	if collected >= TOTAL:
-		#TODO: Remove this with win screen.
-		print("You Win!")
+		var winner = winner_scene.instantiate()
+		var main = get_node("/root/Main")
+		winner.elapsed_time = main.elapsed_time
+		get_tree().current_scene.queue_free()
+		get_tree().root.add_child(winner)
+		get_tree().current_scene = winner

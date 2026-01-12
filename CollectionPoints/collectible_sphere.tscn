@@ -1,22 +1,17 @@
 [gd_scene load_steps=5 format=3 uid="uid://cn8x63pnoyen8"]
 
 [ext_resource type="Script" uid="uid://cfk87qoan1toy" path="res://CollectionPoints/collectionbulb.gd" id="1_0k2bq"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5du5n"]
-albedo_color = Color(0.11372549, 0.73333335, 0.015686275, 1)
-
-[sub_resource type="SphereMesh" id="SphereMesh_uiek3"]
-material = SubResource("StandardMaterial3D_5du5n")
-radius = 0.2
-height = 0.4
+[ext_resource type="Script" uid="uid://byggr8tq2ag26" path="res://CollectionPoints/rotate.gd" id="1_fnff1"]
+[ext_resource type="PackedScene" uid="uid://dve6k03dyd6" path="res://CollectionPoints/EC-model.glb" id="1_knfkf"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_cq4q4"]
 radius = 0.2
 
 [node name="CollectibleSphere" type="Node3D"]
+script = ExtResource("1_fnff1")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("SphereMesh_uiek3")
+[node name="Tinkercad GLTF Scene" parent="." instance=ExtResource("1_knfkf")]
+transform = Transform3D(16, 0, 0, 0, -6.993822e-07, -16, 0, 16, -6.993822e-07, 0.08929095, 0.123986915, -0.08584204)
 
 [node name="Area3D" type="Area3D" parent="."]
 

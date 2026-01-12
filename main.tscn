@@ -1,4 +1,4 @@
-[gd_scene load_steps=93 format=3 uid="uid://done62ik5vswl"]
+[gd_scene load_steps=95 format=3 uid="uid://done62ik5vswl"]
 
 [ext_resource type="Script" uid="uid://cfs1aykjaoj05" path="res://main.gd" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://6c2ac38d2r6x" path="res://Player/player.tscn" id="1_mswn6"]
@@ -22,6 +22,8 @@
 [ext_resource type="Texture2D" uid="uid://c0lq2deaii56c" path="res://Assets/Textures/banaan.jpeg" id="15_cegan"]
 [ext_resource type="PackedScene" uid="uid://btp4pi5lxhmth" path="res://Assets/Lockers/lockers.glb" id="16_2cqfq"]
 [ext_resource type="Script" uid="uid://ceum6lr12w6xv" path="res://fade.gd" id="17_074og"]
+[ext_resource type="AudioStream" uid="uid://dxpxqvtu5he8e" path="res://Sound/effects/collectible-sound.mp3" id="19_0odxb"]
+[ext_resource type="PackedScene" uid="uid://d0ux3ybhrw3eg" path="res://UI/win_screen/winner.tscn" id="21_lswn8"]
 [ext_resource type="PackedScene" uid="uid://dpcimlmv8hlk6" path="res://Assets/pc/desktop_computer.glb" id="23_d13ii"]
 [ext_resource type="PackedScene" uid="uid://0ghgg31mm7hs" path="res://Assets/blinds/window_blinds.glb" id="24_1u8w0"]
 
@@ -238,12 +240,15 @@ fill_to = Vector2(1, 0.46153846)
 
 [sub_resource type="Environment" id="Environment_kek77"]
 ambient_light_source = 3
-ambient_light_energy = 8.55
+ambient_light_color = Color(0, 0.07450981, 0, 1)
+ambient_light_energy = 4.56
+glow_enabled = true
+glow_normalized = true
 fog_mode = 1
 fog_light_color = Color(0.6452981, 0.5433643, 0.08631503, 1)
 fog_density = 1.0
 volumetric_fog_enabled = true
-volumetric_fog_density = 0.8525
+volumetric_fog_density = 0.664
 
 [sub_resource type="BoxMesh" id="BoxMesh_0odxb"]
 size = Vector3(4, 0.2, 4)
@@ -1241,6 +1246,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 2, -7)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Toilets/EastWall"]
 shape = SubResource("BoxShape3D_getpj")
 
+[node name="SFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("19_0odxb")
+
 [node name="UICanvas" type="CanvasLayer" parent="."]
 
 [node name="UI" type="Control" parent="UICanvas"]
@@ -1252,6 +1260,7 @@ offset_left = -40.0
 offset_bottom = 40.0
 grow_horizontal = 0
 script = ExtResource("4_lquwl")
+winner_scene = ExtResource("21_lswn8")
 
 [node name="CollectCounter" type="Label" parent="UICanvas/UI"]
 layout_mode = 0
@@ -1535,3 +1544,73 @@ transform = Transform3D(0.04, 0, 6.993823e-09, 0, 0.04, 0, -6.993823e-09, 0, 0.0
 
 [node name="Sketchfab_Scene57" parent="." instance=ExtResource("24_1u8w0")]
 transform = Transform3D(-0.04, 0, -3.496911e-09, 0, 0.04, 0, 3.496911e-09, 0, -0.04, 15.588808, 0.73241997, 19.729187)
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.859991, 5.0243754, -19.95362)
+light_energy = 2.0
+light_indirect_energy = 9.014
+light_volumetric_fog_energy = 2.016
+omni_range = 2.0
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.979195, 5.0243754, -8.986138)
+light_energy = 2.0
+light_indirect_energy = 9.014
+light_volumetric_fog_energy = 2.016
+omni_range = 2.0
+
+[node name="OmniLight3D5" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.979195, 5.0243754, 0.6033852)
+light_energy = 2.0
+light_indirect_energy = 9.014
+light_volumetric_fog_energy = 2.016
+omni_range = 2.0
+
+[node name="OmniLight3D6" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.979195, 5.0243754, 11.23565)
+light_energy = 2.0
+light_indirect_energy = 9.014
+light_volumetric_fog_energy = 2.016
+omni_range = 2.0
+
+[node name="OmniLight3D7" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0933437, 5.0243754, 11.23565)
+light_energy = 2.0
+light_indirect_energy = 9.014
+light_volumetric_fog_energy = 2.016
+omni_range = 2.0
+
+[node name="OmniLight3D8" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.274427, 5.0243754, 11.23565)
+light_energy = 2.0
+light_indirect_energy = 9.014
+light_volumetric_fog_energy = 2.016
+omni_range = 2.0
+
+[node name="OmniLight3D9" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.460155, 5.0243754, 11.23565)
+light_energy = 2.0
+light_indirect_energy = 9.014
+light_volumetric_fog_energy = 2.016
+omni_range = 2.0
+
+[node name="OmniLight3D11" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.478603, 5.0243754, -5.7153177)
+light_energy = 2.0
+light_indirect_energy = 9.014
+light_volumetric_fog_energy = 2.016
+omni_range = 2.0
+
+[node name="OmniLight3D10" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.460155, 5.0243754, 21.080956)
+light_energy = 2.0
+light_indirect_energy = 9.014
+light_volumetric_fog_energy = 2.016
+omni_range = 2.0
+
+[node name="OmniLight3D4" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.25199, 5.0243754, -21.00755)
+light_energy = 2.0
+light_indirect_energy = 9.014
+light_volumetric_fog_energy = 2.016
+omni_range = 2.0
